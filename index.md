@@ -148,3 +148,59 @@ The technology stack was chosen for its performance, scalability, and ease of us
 - **Next.js**: A React framework that enables functionality such as server-side rendering and generating static websites, which is beneficial for SEO and overall performance.
 - **Docker**: Utilized for containerizing the application, Docker provides an isolated environment for development, which is consistent across all stages of deployment.
 - **PostgreSQL**: A powerful, open-source object-relational database system that uses and extends the SQL language combined with many features that safely store and scale the most complicated data workloads.
+
+### API Documentation - Donation Management
+
+#### Base URL /donation
+
+Authentication is required for all Donation API endpoints, using bearer tokens in the request header.
+
+#### Endpoints
+- **List Donations (`GET /`):** Retrieves all donations associated with the user's account.
+- **Create Donation (`POST /`):** Allows the user to submit a new donation with an optional message.
+- **Admin Donations (`GET /admin`):** Fetches the latest 'ADMIN' type donation message.
+- **Update Admin Message (`POST /admin`):** Updates or creates an 'ADMIN' type donation message.
+
+#### Responses
+Responses will include status codes such as `200 OK` for successful requests, `201 Created` for successful creation, and `202 Accepted` for successful updates.
+
+### API Documentation - Elective Courses
+
+#### Base URL /elective_course
+
+Authentication with bearer tokens is also required for Elective Courses API endpoints.
+
+#### Endpoints
+- **List Courses (`GET /`):** Retrieves a list of all available elective courses.
+- **Booked Courses (`GET /booked`):** Fetches elective courses that the user has booked.
+- **Course Requests (`GET /request`):** Lists all elective course requests.
+- **Create Course (`POST /`):** Endpoint to create a new elective course.
+- **Bulk Create (`POST /bulk`):** Allows for the creation of multiple elective courses at once.
+- **Update Course (`PUT /`):** Updates details of an existing elective course.
+- **Delete Course (`DELETE /remove`):** Removes an elective course from the system.
+- **Course Request (`POST /request`):** Allows a user to request to join an elective course.
+
+### API Documentation - Pass Requests
+
+#### Base URL /request_pass
+
+All pass request endpoints mandate authenticated access.
+
+#### Endpoints
+- **List Passes (`GET /`):** Fetches all pass requests made by the user.
+- **Admin Passes (`GET /admin`):** Lists all pass requests accessible by admins.
+- **Update Request (`PATCH /`):** Allows for updating the status of an existing pass request.
+- **Order Pass (`POST /`):** Creates a new request for a pass.
+- **Disconnect Request (`DELETE /`):** Removes a pass request.
+
+Responses will be structured in JSON, including appropriate HTTP status codes to indicate the outcome of the request.
+
+#### Error Handling
+Standard HTTP status codes are used to indicate errors:
+- `401 Unauthorized`: Authentication required or token invalid.
+- `404 Not Found`: Resource not available.
+- `422 Unprocessable Entity`: Issues with request data.
+- `500 Internal Server Error`: General server-side error.
+
+For contributions, refer to our contribution guidelines and ensure you test your changes thoroughly before submitting a pull request.
+
