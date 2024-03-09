@@ -110,8 +110,6 @@ Your personal account section allows you to update your profile details and cont
 
 For administrators, a separate login is required to access the admin panel, where you can manage user requests. The UI is intuitive, with options to approve or decline requests.
 
-Remember to replace `path-to-your-screenshot-X` with the actual paths where you have stored your screenshots within your project repository.
-
 For administrative tasks, it's important to securely manage alumni requests, ensuring that actions reflect the current policies and standards of the university.
 
 Please note that the admin section requires a new login, reflecting the need for higher security and administrative privileges.
@@ -120,46 +118,33 @@ As this documentation is designed to be clear and helpful, please contact the sy
 
 
 ## Developer Documentation
-In-depth information for developers who want to contribute to the project or set it up for local development.
+
+This section provides detailed information for developers interested in contributing to the IU Alumni System or setting it up for local development.
 
 ### System Architecture
-An overview of the high-level architecture and interaction of system components.
+
+The IU Alumni System is structured using a microservices architecture, which separates the frontend and backend services to allow independent scaling and development. The system's architecture is designed to provide a robust, secure, and scalable platform for alumni interactions with the university.
+
+- **Frontend**: Developed using Next.js, it provides an interactive and user-friendly interface.
+- **Backend**: Powered by Python's FastAPI framework, it handles business logic, database operations, and server-side rendering.
+- **Database**: PostgreSQL is employed for data persistence, chosen for its reliability and feature-rich platform for handling complex data workloads.
+- **Containerization**: Docker containers are used to encapsulate the application environment, ensuring consistency across development, testing, and production environments.
 
 ### Repository Structure
-Detailed description of the repository layout and where to find key elements.
+
+The repository is organized into multiple directories, each with a specific purpose:
+
+- `/app`: Contains the backend application with FastAPI, including all server logic, API routes, and utilities.
+- `/app/templates`: Stores email templates and other HTML templates for communications.
+- `/src`: Houses the frontend Next.js application, encompassing all React components, styles, and frontend logic.
+- `/public`: A directory for static files such as images, fonts, and client-side JS that needs to be publicly accessible.
+- `Dockerfile(s)`: Contains the Docker configuration files for building the application containers.
 
 ### Technology Stack
-Explanation of the technology choices including Python FastAPI, Next.js, Docker, and PostgreSQL.
 
-## How to Run
-Guidelines for running the system both in development and production environments.
+The technology stack was chosen for its performance, scalability, and ease of use:
 
-### Local Development
-Detailed steps for setting up and running the system on a local machine.
-
-### Docker Deployment
-Instructions for deploying the system using Docker containers.
-
-## Contribution Guidelines
-Guidance for those looking to contribute to the project including coding standards and how to submit pull requests.
-
-## Testing
-Information on the testing protocols and how to execute tests.
-
-## FAQs
-Quick answers to common queries regarding the use and development of the system.
-
-## Additional Resources
-Links to additional information such as demo videos and external support channels.
-
-## Changelog
-Documented log of all the changes made to the system over time.
-
-## License
-Information about the project's licensing and usage terms.
-
-## Contact
-Contact information for the project team for support or inquiries.
-
-## Appendix
-Any additional resources or information that supports the documentation.
+- **Python FastAPI**: An modern, fast web framework for building APIs with Python 3.7+ based on standard Python type hints. It's chosen for its high performance and ease of development.
+- **Next.js**: A React framework that enables functionality such as server-side rendering and generating static websites, which is beneficial for SEO and overall performance.
+- **Docker**: Utilized for containerizing the application, Docker provides an isolated environment for development, which is consistent across all stages of deployment.
+- **PostgreSQL**: A powerful, open-source object-relational database system that uses and extends the SQL language combined with many features that safely store and scale the most complicated data workloads.
