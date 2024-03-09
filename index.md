@@ -52,10 +52,6 @@ Once the installation is complete, some initial configuration might be necessary
 2. Create a new database for the application.
 3. Configure the database settings in `config.py` to connect to your new database.
 
-#### Frontend Configuration
-1. Set up the environment variables required for the frontend application in `next.config.js`.
-2. Ensure the backend API is accessible from the frontend application.
-
 Now your IU Alumni System should be ready for use or development purposes.
 
 ## User Guide
