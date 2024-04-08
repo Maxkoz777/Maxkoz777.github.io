@@ -1,202 +1,352 @@
 ---
-title: "IU Alumni System Documentation"
-keywords: alumni system, university, documentation
-tags: [overview, getting_started, user_guide, developer_documentation, how_to, faq]
+title: "LeadsCalendar Project Documentation"
+keywords: leads calendar, event management, payment integration, documentation
+tags: [introduction, getting_started, api_integration, application_functionality, code_samples, testing_validation, deployment, appendices]
 sidebar: mydoc_sidebar
 permalink: index.html
-summary: Welcome to the IU Alumni System Documentation. Whether you're a student, alumnus, university staff, or developer, this comprehensive guide will assist you in navigating and utilizing the system.
+summary: Welcome to the LeadsCalendar Project Documentation. This guide provides comprehensive information on integrating and utilizing the LeadsCalendar web application, which simplifies event scheduling and management with integrated payment options.
 ---
 
-# IU Alumni System Documentation
+# LeadsCalendar Project Documentation
 
-## Home
-Welcome to the IU Alumni System documentation. Here you will find all you need to navigate and utilize the system, whether you are a student, alumnus, university staff, or a developer.
+## Introduction
 
-## Overview
-The IU Alumni System is a comprehensive platform that enables Innopolis University alumni to stay connected with the university. Through this portal, alumni can register for elective courses, manage event attendance, and request access passes to the university. This interactive system aims to provide a seamless experience for users while maintaining a robust and secure backend for administrators.
+### Overview of LeadsCalendar
+
+LeadsCalendar is a cutting-edge web application designed to simplify event scheduling and management. By integrating popular payment gateways such as PayPal and Binance Pay with the robust Google Calendar API, LeadsCalendar offers a seamless experience for users to create and confirm events with ease. Whether it's for personal planning or professional scheduling, the application ensures that every event is not only well-organized but also secured with a payment confirmation feature. This unique functionality allows users to make a payment of 1 USD or its equivalent in cryptocurrency, adding an extra layer of commitment to the event creation process.
+
+### Purpose of the Documentation
+
+This documentation serves as a comprehensive guide for developers, users, and stakeholders to understand the functionalities, API integrations, and workflow of LeadsCalendar. It aims to provide clear instructions and insights into the technical aspects of the application, including setup, API usage, event management, and payment processing. Whether you're looking to integrate LeadsCalendar into your workflow or develop similar applications, this documentation will equip you with the necessary knowledge and best practices to get started.
+
+### Target Audience
+
+The target audience for this documentation includes:
+
+- **Developers:** Individuals or teams looking to understand the technical implementation and API integrations of LeadsCalendar for development or customization purposes.
+- **End Users:** Users who wish to utilize LeadsCalendar for scheduling and managing events, and want to understand the application's features and functionalities.
+- **Business Stakeholders:** Decision-makers and business owners considering the adoption of LeadsCalendar for their organizational needs and seeking an overview of its capabilities.
+
+---
 
 ## Getting Started
-This section guides you through the initial steps to get the IU Alumni System up and running on your local machine.
 
 ### Prerequisites
-Before you begin, ensure you have the following installed on your system:
-- Python 3.8 or higher
-- pip (Python package installer)
-- Node.js 12 or higher
-- npm (Node package manager)
-- Docker
-- PostgreSQL
 
-These are required to run the backend and frontend of the system as well as for database management.
+Before you begin integrating the LeadsCalendar project with PayPal, Binance Pay, and Google Calendar, ensure you have the following prerequisites:
 
-### Installation Guide
-To install the IU Alumni System, you need to set up both the backend and frontend parts of the application.
+- **PayPal Business Account:** You'll need a PayPal Business account to generate client ID and client secret for API authentication. Sign up or log in [here](https://www.paypal.com/businessmanage/credentials/apiaccess).
+- **Binance Account:** A Binance account is required to access Binance Pay APIs. Register or sign in [here](https://accounts.binance.com/en/register).
+- **Google Account:** A Google account is necessary to use the Google Calendar API. Sign up or log in [here](https://accounts.google.com/SignUp).
 
-#### Backend Installation
-1. Clone the repository to your local machine.
-2. Navigate to the `app` directory in your terminal.
-3. Set up a virtual environment using `python -m venv venv`.
-4. Activate the virtual environment with `source venv/bin/activate` (on Unix systems) or `venv\Scripts\activate` (on Windows).
-5. Install the required packages using `pip install -r requirements.txt`.
+### Installation and Setup Instructions
 
-#### Frontend Installation
-1. Navigate to the `src` directory in your terminal.
-2. Install the required Node.js packages using `npm install`.
-3. Build the project for production with `npm run build`.
+1. **Obtain API Keys:**
+    - For PayPal: Log in to the [PayPal Developer Dashboard](https://developer.paypal.com/developer/applications), create an app, and copy the client ID and client secret.
+    - For Binance Pay: Register your application with Binance Accounts to obtain the SDK and necessary credentials.
+    - For Google Calendar: Enable the Google Calendar API in the [Google Developer Console](https://console.developers.google.com/), create credentials, and download the JSON file containing your API key.
 
-### Initial Configuration
-Once the installation is complete, some initial configuration might be necessary:
+2. **Environment Setup:**
+    - Ensure you have a development environment ready with your preferred programming language and tools.
+    - Install necessary libraries or SDKs for interacting with the APIs. For example, use PayPal's SDK for PayPal integration, Binance's SDK for Binance Pay, and Google's client libraries for Google Calendar.
 
-#### Backend Configuration
-1. Ensure that PostgreSQL is running on your system.
-2. Create a new database for the application.
-3. Configure the database settings in `config.py` to connect to your new database.
+3. **Configuration:**
+    - Store your API keys and secrets securely in your application's environment variables or configuration files.
+    - Configure your application to use the sandbox or test environment for each API during development to avoid real transactions.
 
-Now your IU Alumni System should be ready for use or development purposes.
+### Basic Usage Guide
 
-## User Guide
+- **PayPal Integration:**
+    - Use the client ID and client secret to obtain an access token from PayPal.
+    - Make API calls to create payment buttons, process payments, and handle transactions using the access token.
 
-This section provides guidance on how to use the IU Alumni System. Follow these instructions to navigate through the system and utilize its features.
+- **Binance Pay Integration:**
+    - Follow Binance Pay's documentation to integrate payment processing in your application.
+    - Use the SDK to initiate and manage cryptocurrency payments.
 
-### 1. Login
+- **Google Calendar Integration:**
+    - Use the API key to authenticate your application with the Google Calendar API.
+    - Implement functionality to create events, manage calendars, and handle event notifications.
 
-![Login Page](media/login.png)
+### Testing:
 
-To access the IU Alumni System, start at the login page. If you don't have an account, you can register for one. Otherwise, enter your email address and password, then click `Continue`. Alumni can also use the Innopolis University SSO for convenience.
+- Test your integrations thoroughly in the sandbox or test environments.
+- Verify that payments are processed correctly, events are created and updated in Google Calendar, and all API interactions are functioning as expected.
 
-### 2. Home Page with Overview
 
-![Home Page](media/overview.png)
+---
 
-Once logged in, you're greeted with the home page. This provides an overview of the platform, including quick access to main features such as event updates, course registrations, and pass requests.
+## API Integration
 
-### 3. Request Pass
+### Google Calendar API
 
-![Request Pass](media/requests_pass.png)
+#### Overview and Use Case in LeadsCalendar
 
-To visit the university, click on `Request Pass`. You'll need to enter the date of your visit and guest names if applicable. Note the general information about pass collection and the eligibility criteria.
+The Google Calendar API allows LeadsCalendar to interact with users' calendars, enabling the creation and management of events. In LeadsCalendar, this API is used to create events for scheduled tasks and appointments, providing users with an integrated experience that combines task management with calendar functionality.
 
-### 4. Request Electives
+#### Authentication Process
 
-![Request Electives](media/elective_request.png)
+To authenticate with the Google Calendar API, follow these steps:
 
-For enrolling in elective courses, go to `Request Elective`. You'll see a list of available courses along with instructor names and delivery modes. Click `Request` on the course you're interested in.
+1. Obtain OAuth 2.0 credentials from the [Google Developer Console](https://console.developers.google.com/).
+2. Use the credentials to obtain an access token from the Google Authorization Server.
+3. Include the access token in the `Authorization` header of your API requests.
 
-### 5. History of Elective Requests
+#### Creating Events Through the API
 
-![Elective History](media/elective_history.png)
+To create an event in a user's Google Calendar:
 
-The system maintains a history of your elective requests. You can review past submissions and their statuses (pending, approved, or rejected) under the history section.
+1. Use the `calendarId` to specify the target calendar.
+2. Send a `POST` request to the `events` endpoint with the event details in the request body.
+3. Handle the API response, which includes the created event's details.
 
-### 6. Make Donations
+#### Handling Responses and Errors
 
-![Donation Page](media/donation.png)
+- Check the HTTP status code of the response to determine the outcome of the request.
+- Handle errors according to the [error codes and messages](https://developers.google.com/calendar/api/guides/errors) provided in the Google Calendar API documentation.
 
-Contributions are valuable to the university community. Visit the `Make Donations` page to support various university causes and initiatives.
+### PayPal REST API
 
-### 7. Manage Personal Account
+#### Overview and Use Case in LeadsCalendar
 
-![Account Management](media/account.png)
+The PayPal REST API enables LeadsCalendar to process payments for tasks or appointments that require a fee. Users can pay for services directly within the application, providing a seamless payment experience.
 
-Your personal account section allows you to update your profile details and contact information. Keep your data up-to-date for better interaction with the alumni community.
+#### Setting Up PayPal for Payments
 
-### 8. Admin Section (New Login Required)
+1. Create a PayPal app in the [PayPal Developer Dashboard](https://developer.paypal.com/developer/applications) to obtain your client ID and client secret.
+2. Configure your app to use PayPal's sandbox environment for testing.
 
-![Admin Section](media/admin.png)
+#### Processing Payments Through the API
 
-For administrators, a separate login is required to access the admin panel, where you can manage user requests. The UI is intuitive, with options to approve or decline requests.
+1. Obtain an access token by sending your client ID and client secret to the PayPal OAuth endpoint.
+2. Use the access token to authorize payment API calls.
+3. Create a payment by sending a `POST` request to the `payments` endpoint with the payment details.
 
-For administrative tasks, it's important to securely manage alumni requests, ensuring that actions reflect the current policies and standards of the university.
+#### Handling Payment Confirmations and Errors
 
-Please note that the admin section requires a new login, reflecting the need for higher security and administrative privileges.
+- Monitor the payment status in the API response to confirm successful transactions.
+- Handle errors and failed payments according to the [PayPal API error codes](https://developer.paypal.com/api/rest/#errors).
 
-As this documentation is designed to be clear and helpful, please contact the system administrator if you encounter any issues or have suggestions for improvements.
+### Binance Pay API
 
+#### Overview and Use Case in LeadsCalendar
 
-## Developer Documentation
+Binance Pay API allows LeadsCalendar to accept cryptocurrency payments, catering to users who prefer digital currencies. This integration provides an alternative payment option, enhancing the flexibility of the platform.
 
-This section provides detailed information for developers interested in contributing to the IU Alumni System or setting it up for local development.
+#### Setting Up Binance Pay for Cryptocurrency Payments
 
-### System Architecture
+1. Register your application with Binance Accounts to obtain the necessary SDK and credentials.
+2. Configure your application to use Binance Pay's sandbox environment for testing.
 
-The IU Alumni System is structured using a microservices architecture, which separates the frontend and backend services to allow independent scaling and development. The system's architecture is designed to provide a robust, secure, and scalable platform for alumni interactions with the university.
+#### Processing Payments Through the API
 
-- **Frontend**: Developed using Next.js, it provides an interactive and user-friendly interface.
-- **Backend**: Powered by Python's FastAPI framework, it handles business logic, database operations, and server-side rendering.
-- **Database**: PostgreSQL is employed for data persistence, chosen for its reliability and feature-rich platform for handling complex data workloads.
-- **Containerization**: Docker containers are used to encapsulate the application environment, ensuring consistency across development, testing, and production environments.
+1. Use the SDK to initiate a payment request with the required parameters, such as `merchantId`, `prepayId`, and `noncestr`.
+2. Handle the payment confirmation by verifying the signature returned in the payment response.
 
-### Repository Structure
+#### Handling Payment Confirmations and Errors
 
-The repository is organized into multiple directories, each with a specific purpose:
+- Check the payment status in the API response to ensure the transaction is successful.
+- Handle errors according to the Binance Pay API documentation, focusing on error codes related to payment processing.
 
-- `/app`: Contains the backend application with FastAPI, including all server logic, API routes, and utilities.
-- `/app/templates`: Stores email templates and other HTML templates for communications.
-- `/src`: Houses the frontend Next.js application, encompassing all React components, styles, and frontend logic.
-- `/public`: A directory for static files such as images, fonts, and client-side JS that needs to be publicly accessible.
-- `Dockerfile(s)`: Contains the Docker configuration files for building the application containers.
+---
 
-### Technology Stack
+## Application Functionality
 
-The technology stack was chosen for its performance, scalability, and ease of use:
+### Event Creation Flow
 
-- **Python FastAPI**: An modern, fast web framework for building APIs with Python 3.7+ based on standard Python type hints. It's chosen for its high performance and ease of development.
-- **Next.js**: A React framework that enables functionality such as server-side rendering and generating static websites, which is beneficial for SEO and overall performance.
-- **Docker**: Utilized for containerizing the application, Docker provides an isolated environment for development, which is consistent across all stages of deployment.
-- **PostgreSQL**: A powerful, open-source object-relational database system that uses and extends the SQL language combined with many features that safely store and scale the most complicated data workloads.
+1. **User Interface:** The user accesses the LeadsCalendar interface to create a new event. They provide necessary details such as event name, date, time, and description.
+2. **Google Calendar API:** The application uses the Google Calendar API to create an event on the user's Google Calendar. The API returns a confirmation with the event details.
+3. **Payment Prompt:** Once the event is successfully created, the user is prompted to make a payment of 1 USD or its equivalent in cryptocurrency to confirm the event.
+
+### Payment Prompt and Processing
 
-### API Documentation - Donation Management
+1. **Payment Options:** The user is presented with payment options, including PayPal and Binance Pay, to choose their preferred payment method.
+2. **Payment Processing:**
+    - For PayPal: The application uses the PayPal REST API to process the payment. The user completes the payment through the PayPal interface.
+    - For Binance Pay: The application uses the Binance Pay API to process the cryptocurrency payment. The user completes the payment through the Binance Pay interface.
+3. **Payment Confirmation:** The application receives a payment confirmation from the selected payment service. This confirmation is recorded in the system.
+
+### Event Confirmation and Notification
+
+1. **Event Confirmation:** Once the payment is successfully processed, the application confirms the event creation. The event status is updated in the user's Google Calendar.
+2. **Notification:** The user receives a notification, either via email or within the application, confirming the event creation and successful payment.
+
+### Handling Errors and Exceptions
+
+1. **Error Handling:** The application implements error handling mechanisms to manage potential issues during event creation, payment processing, or API interactions.
+2. **User Feedback:** In case of an error, the user is provided with a clear error message and guidance on how to resolve the issue.
+3. **Logging and Monitoring:** Errors and exceptions are logged for monitoring and debugging purposes. This helps in identifying and addressing recurring issues.
+
+---
+
+## Code Samples and Configurations
+
+### Sample Code for Integrating Each API
+
+#### Google Calendar API
+
+```python
+from googleapiclient.discovery import build
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+import pickle
+
+# Scope for Google Calendar API
+SCOPES = ['https://www.googleapis.com/auth/calendar']
+
+# Authenticate and create the service
+creds = None
+if os.path.exists('token.pickle'):
+    with open('token.pickle', 'rb') as token:
+        creds = pickle.load(token)
+if not creds or not creds.valid:
+    if creds and creds.expired and creds.refresh_token:
+        creds.refresh(Request())
+    else:
+        flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
+        creds = flow.run_local_server(port=0)
+    with open('token.pickle', 'wb') as token:
+        pickle.dump(creds, token)
+
+service = build('calendar', 'v3', credentials=creds)
+
+# Create an event
+event = {
+    'summary': 'LeadsCalendar Event',
+    'start': {
+        'dateTime': '2022-01-01T09:00:00-07:00',
+    },
+    'end': {
+        'dateTime': '2022-01-01T10:00:00-07:00',
+    },
+}
 
-#### Base URL /donation
+event = service.events().insert(calendarId='primary', body=event).execute()
+```
 
-Authentication is required for all Donation API endpoints, using bearer tokens in the request header.
+#### PayPal REST API
+
+```python
+import requests
 
-#### Endpoints
-- **List Donations (`GET /`):** Retrieves all donations associated with the user's account.
-- **Create Donation (`POST /`):** Allows the user to submit a new donation with an optional message.
-- **Admin Donations (`GET /admin`):** Fetches the latest 'ADMIN' type donation message.
-- **Update Admin Message (`POST /admin`):** Updates or creates an 'ADMIN' type donation message.
+CLIENT_ID = 'YOUR_CLIENT_ID'
+CLIENT_SECRET = 'YOUR_CLIENT_SECRET'
 
-#### Responses
-Responses will include status codes such as `200 OK` for successful requests, `201 Created` for successful creation, and `202 Accepted` for successful updates.
+# Get access token
+auth_response = requests.post(
+    'https://api-m.sandbox.paypal.com/v1/oauth2/token',
+    auth=(CLIENT_ID, CLIENT_SECRET),
+    data={'grant_type': 'client_credentials'}
+)
+access_token = auth_response.json()['access_token']
 
-### API Documentation - Elective Courses
+# Create a payment
+payment_data = {
+    'intent': 'sale',
+    'payer': {
+        'payment_method': 'paypal',
+    },
+    'transactions': [{
+        'amount': {
+            'total': '1.00',
+            'currency': 'USD',
+        },
+        'description': 'LeadsCalendar Event Payment',
+    }],
+    'redirect_urls': {
+        'return_url': 'http://localhost:8000/return',
+        'cancel_url': 'http://localhost:8000/cancel',
+    },
+}
 
-#### Base URL /elective_course
+payment_response = requests.post(
+    'https://api-m.sandbox.paypal.com/v1/payments/payment',
+    headers={'Authorization': f'Bearer {access_token}'},
+    json=payment_data
+)
+print(payment_response.json())
+```
 
-Authentication with bearer tokens is also required for Elective Courses API endpoints.
+#### Binance Pay API
 
-#### Endpoints
-- **List Courses (`GET /`):** Retrieves a list of all available elective courses.
-- **Booked Courses (`GET /booked`):** Fetches elective courses that the user has booked.
-- **Course Requests (`GET /request`):** Lists all elective course requests.
-- **Create Course (`POST /`):** Endpoint to create a new elective course.
-- **Bulk Create (`POST /bulk`):** Allows for the creation of multiple elective courses at once.
-- **Update Course (`PUT /`):** Updates details of an existing elective course.
-- **Delete Course (`DELETE /remove`):** Removes an elective course from the system.
-- **Course Request (`POST /request`):** Allows a user to request to join an elective course.
+```python
+import requests
+import hmac
+import hashlib
 
-### API Documentation - Pass Requests
+MERCHANT_ID = 'YOUR_MERCHANT_ID'
+API_KEY = 'YOUR_API_KEY'
+SECRET_KEY = 'YOUR_SECRET_KEY'
 
-#### Base URL /request_pass
+# Create a payment
+payload = f'merchantId={MERCHANT_ID}&noncestr=NONCE&timestamp=TIMESTAMP'
+signature = hmac.new(SECRET_KEY.encode(), payload.encode(), hashlib.sha256).hexdigest()
 
-All pass request endpoints mandate authenticated access.
+payment_data = {
+    'merchantId': MERCHANT_ID,
+    'prepayId': 'PREPAY_ID',
+    'noncestr': 'NONCE',
+    'timestamp': 'TIMESTAMP',
+    'sign': signature,
+}
 
-#### Endpoints
-- **List Passes (`GET /`):** Fetches all pass requests made by the user.
-- **Admin Passes (`GET /admin`):** Lists all pass requests accessible by admins.
-- **Update Request (`PATCH /`):** Allows for updating the status of an existing pass request.
-- **Order Pass (`POST /`):** Creates a new request for a pass.
-- **Disconnect Request (`DELETE /`):** Removes a pass request.
+payment_response = requests.post(
+    'https://api.binance.com/binancepay/openapi/v1/order',
+    headers={'X-API-KEY': API_KEY},
+    json=payment_data
+)
+print(payment_response.json())
+```
 
-Responses will be structured in JSON, including appropriate HTTP status codes to indicate the outcome of the request.
+### Configuration Settings and Environment Variables
 
-#### Error Handling
-Standard HTTP status codes are used to indicate errors:
-- `401 Unauthorized`: Authentication required or token invalid.
-- `404 Not Found`: Resource not available.
-- `422 Unprocessable Entity`: Issues with request data.
-- `500 Internal Server Error`: General server-side error.
+- Store sensitive information such as API keys, client IDs, and client secrets in environment variables or a secure configuration file.
+- Use a `.env` file to manage environment variables and load them using a library like `dotenv` in Node.js or `python-dotenv` in Python.
 
-For contributions, refer to our contribution guidelines and ensure you test your changes thoroughly before submitting a pull request.
+### Tips for Debugging and Troubleshooting
 
+- Check the API documentation for specific error codes and messages to understand the cause of errors.
+- Use logging to track the flow of your application and identify where errors occur.
+- Test your API integrations in a sandbox or development environment before going live.
+- Use tools like Postman to manually test API endpoints and inspect responses.
+
+---
+
+## Testing and Validation
+
+### Testing Strategies for API Integration
+
+1. **Unit Testing:** Write unit tests for individual components or functions that interact with the APIs. Mock API responses to isolate and test your application logic.
+2. **Integration Testing:** Test the integration points between your application and the APIs. Verify that your application correctly handles API requests and responses.
+3. **End-to-End Testing:** Simulate real-world scenarios that involve multiple components of your application, including API interactions. Use tools like Selenium for web applications to automate browser interactions.
+
+### Validating Payment Processing
+
+1. **Sandbox Testing:** Use the sandbox environments provided by PayPal and Binance Pay to simulate payment transactions without using real money.
+2. **Transaction Verification:** After a payment is processed, verify the transaction details such as the amount, currency, and payment status. Check the response from the payment API for confirmation.
+3. **Error Handling:** Test how your application handles payment failures, such as insufficient funds or network issues. Ensure that users are informed of any errors and can retry the payment if necessary.
+
+### Ensuring Event Creation Accuracy
+
+1. **Google Calendar API Responses:** Check the responses from the Google Calendar API to ensure that events are created with the correct details. Verify the event date, time, and description.
+2. **User Interface Validation:** Test the event creation form in your application for input validation. Ensure that users can only submit valid data for event creation.
+3. **Update and Deletion:** Test updating and deleting events through your application and verify that the changes are reflected in Google Calendar.
+
+---
+
+## Appendices
+
+### Glossary of Terms
+
+- **API (Application Programming Interface):** A set of protocols and tools for building software applications, allowing different systems to communicate with each other.
+- **OAuth:** An open standard for access delegation, used to grant websites or applications access to information on other websites without giving them the passwords.
+- **Webhook:** A method of augmenting or altering the behavior of a web page or web application with custom callbacks.
+- **Sandbox Environment:** A testing environment that isolates untested code changes and outright experimentation from the production environment or repository.
+- **Idempotency:** The property of certain operations in mathematics and computer science, where the operation can be applied multiple times without changing the result beyond the initial application.
+
+### Additional Resources and Links
+
+- **Google Calendar API Documentation:** [https://developers.google.com/calendar](https://developers.google.com/calendar)
+- **PayPal REST API Documentation:** [https://developer.paypal.com/docs/api/overview/](https://developer.paypal.com/docs/api/overview/)
+- **Binance Pay API Documentation:** [https://developers.binance.com/docs/binance-pay/introduction](https://developers.binance.com/docs/binance-pay/introduction)
+- **Postman:** A tool for testing APIs. [https://www.postman.com/](https://www.postman.com/)
